@@ -11,14 +11,15 @@ class Twitts
 
 	#Inicializar variables
 	def initialize
-		@todo_tweet = []
+		@amigos = []
 		@name = ''
-		@number = 0		
+		@number = 0
+                		
 	end
 
 	#Acceso al HTML para mostrar los resultados
 	def erb(template)
-  		template_file = File.open("twitter.html.erb", 'r')
+  		template_file = File.open("pop.html.erb", 'r')
   		ERB.new(File.read(template_file)).result(binding)
 	end
 	
@@ -37,12 +38,12 @@ class Twitts
 		#Si el nombre existe buscamos sus últimos Tweets
 		if @name == req["firstname"]
 			#puts "#{@todo_tweet}"
-			ultimos_t = client.user_timeline(@name,{:count=>@number.to_i})
-			@todo_tweet =(@todo_tweet && @todo_tweet != '') ? ultimos_t.map{ |i| i.text} : ''				
+			ultimos_t = client.friends(@name,{}).take(10)
+			@amigos = ultimos_t.map { |i| [i.name, i.followers_count]}.sort_by { |x, y| -y }			
 		end
 
 		#Invoca a erb
-		Rack::Response.new(erb('twitter.html.erb'))
+		Rack::Response.new(erb('pop.html.erb'))
 	end
 
 end
@@ -53,7 +54,7 @@ if $0 == __FILE__
 #        	Rack::Lint.new(
 #           	Rack::Twitts.new)), 
             :app => Twitts.new,
-	    :Port => 45767,
+	    :Port => 4567,
 	    :server => 'thin'
   	)
 end

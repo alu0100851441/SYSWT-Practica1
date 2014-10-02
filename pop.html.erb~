@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style type="text/css">
+  			p{ 
+				color: black; 
+			 	font-family: Verdana;
+			}
+
+  			#cabecera{
+				background-color: black;
+				background-size:  100%;
+				height: 7em;
+			  	margin: 0;
+			  	padding: 0;
+			}
+
+			#cabecera p{
+				color: white;
+				text-align: center;
+				font-size: 2em;
+				line-height: 3.5em;
+			}
+
+			#re{
+				padding: 2em 2em 2em 2em;
+				font-family: Arial;
+				margin-top: 4em;
+				margin-left: 6em;
+				margin-bottom: 4em;
+				border: 3px solid gray;
+				width: 25em;
+				float: left;
+				font-size: 1em;
+			}
+			#izquierda{
+				width: 30em; 
+				text-align: center;
+				font-family:Arial;
+				color:black;
+				font-size: 1em;
+				padding: 2em 2em 2em 2em;
+				border: 3px solid gray;
+				float: right;
+				margin-top: 4em;
+				margin-right: 6em; 
+				margin-bottom: 4em;
+			}
+
+			#warning{
+				background-color: #FFCC66;
+				font-size: 1.5em;
+				color: red;
+				padding-left: 2em;
+				padding-right: 2em;
+				padding-top: 0.9em;
+				padding-bottom: 0.9em;
+
+			}
+
+			#col{
+				background-color: #E8E8E8 ;
+				text-align: left;
+				margin-bottom: 1em;
+			}	
+		</style>
+		
+		<title>Rack::Response</title>
+	</head>
+	<body>
+		<div id="cabecera">
+	 			<p><img src="http://img1.wikia.nocookie.net/__cb20110512040338/kimpossible/images/thumb/1/11/Twitter_bird_icon.png/480px-Twitter_bird_icon.png" WIDTH=100 HEIGHT=100 />
+	 			<b>Bienvenido a nuestra aplicación que muestra sus últimos Tweets</b></p>
+	 	</div>
+	 	
+	 	<div id="re">
+		 	<form action="/" method="post">
+		   		<p><b>Introduzca su nombre en Twitter: </b></p><input type="text" name="firstname"  value="" autofocus>
+		   		
+		   		<input  type="submit" value="Submit" >
+		 	</form>
+	 	</div>
+ 		
+ 		<div id="izquierda">
+			<% if @name == ''%>
+				<p id="warning"> No se ha introducido usuario o es incorrecto </p>
+			<%else%>
+				<p><b> Usuario <%= @name %></b></p>
+			<%end %>
+
+		</div>	
+	</body>
+</html>

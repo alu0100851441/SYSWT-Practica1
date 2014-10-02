@@ -52,8 +52,8 @@ if $0 == __FILE__
 # 		:app => Rack::ShowExceptions.new(
 #        	Rack::Lint.new(
 #           	Rack::Twitts.new)), 
-		:app => Twitts.new,
-	    :Port => 9393,
+            :app => Twitts.new,
+	    :Port => 4567,
 	    :server => 'thin'
   	)
 end
